@@ -1,12 +1,15 @@
 <template>
-  <div class="rhymesaurus">
-    <h2>Rhymesaurus: The Rhyming Thesaurus</h2>
-    <p>
-      <router-link to="/adjfornoun">Adjective For Noun</router-link>
+  <div class="adjfornoun">
+      <h2>Adjective-for-a-Noun-saurus</h2>
+       <p>
+      <router-link to="/">Home: Rhymesaurus</router-link>
     </p>
     <!-- Used a submit event handler to allow the findWords method to handle this form submission. -->
     <form v-on:submit.prevent="findWords">
-      <p>Find rhymes for <input type="text" v-model="rhyme"> related to <input type="text" v-model="phrase"> <button type="submit">Search</button></p>
+      <p>Find an adjective for a given noun. Enter noun here: 
+        <input type="text" v-model="noun">
+        <button type="submit">Search</button>
+      </p>
     </form>
     <!-- Added a v-if conditional to make this results list show only if there are results and if the length is greater than 0. -->
     <ul class="results" v-if="results && results.length > 0">
@@ -41,13 +44,12 @@
 import axios from 'axios';
 
 export default {
-  name: 'Rhymesaurus',
+  name: 'AdjForNoun',
   data () {
     return {
       results: null,
       errors: [],
-      phrase: '',
-      rhyme: ''
+      noun: ''
     }
   },
     // Created the findWords method
@@ -55,8 +57,7 @@ export default {
       findWords: function(){
       axios.get('https://api.datamuse.com/words', {
         params: {
-          ml: this.phrase,
-          rel_rhy:this.rhyme
+          rel_jjb:this.noun
         }
       })
       .then(response =>{
@@ -67,12 +68,13 @@ export default {
       })
     }
     }
+
 }
 </script>
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
-.rhymesaurus {
+.adjfornoun {
   font-size: 1.4rem;
 }
 

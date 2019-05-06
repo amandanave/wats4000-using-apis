@@ -1,7 +1,8 @@
 import Vue from 'vue'
 import Router from 'vue-router'
 import Rhymesaurus from '@/views/Rhymesaurus'
-// TODO: Import new component
+// Imported AdjForNoun component
+import AdjForNoun from '@/views/AdjForNoun'
 
 Vue.use(Router)
 
@@ -9,9 +10,14 @@ export default new Router({
   routes: [
     {
       path: '/',
-      name: 'Rhymesaurus',
+      name: 'rhymesaurus',
       component: Rhymesaurus
-    }
-    // TODO: Add new route definition here.
+    },
+      // Added new route definition
+      {
+      path: '/adjfornoun',
+      name: 'adjfornoun',
+      component: AdjForNoun
+      }
   ]
 })
